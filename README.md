@@ -9,49 +9,34 @@ seasoning every sentence with another warning.
 
 ## How it works
 
-It combines shared instruction-design rules with an authoring workflow. Approved
-revisions preserve the exact pre-edit state for comparison; reviews return
-findings without editing. The host's Skill Creator owns Skill structure,
-packaging and format validation. Source review and format validation are
-reported separately from observed model behavior.
+- By default it writes for Claude Opus 5.5, Claude Fable 5.1+, GPT-6.1 Sol and
+  GPT Astra 6+.
+- The intended outcome, activation boundaries, permissions and acceptance
+  criteria survive a revision. It asks only about material changes beyond what
+  you requested or approved.
+- An approved revision keeps the exact state from before the edit for
+  comparison. A review returns findings and edits nothing.
+- The host's Skill Creator owns Skill structure, packaging and format
+  validation.
+- It reports what it read in the source apart from what a model was actually
+  observed doing.
 
-## What it enforces
+## How to use
 
-It preserves the intended outcome, activation boundaries, permissions and
-acceptance criteria. It asks only about material changes beyond the request or
-prior approval. Changed instructions and affected consumers are checked together
-in one review.
+Ask it to write, simplify or review a Skill or a reusable prompt:
 
-## What it costs
-
-The Skill has no paid service calls. Host model usage and any explicitly requested evaluation have their usual costs.
-
-## How it was developed
-
-Skillwriter grew from maintaining Skills and reusable prompts in real projects.
-Repeated rules and explanations made instructions longer without necessarily
-making them clearer. Shared writing guidance became the basis for both
-standalone Skills and the Suite.
-
-Revisions combine focused tests with analysis of how agents use the instructions
-in real workflows. The results guide what to clarify, remove or keep. The next
-revision is tested and used again.
-
-## Compatibility
-
-Requires an Agent Skills host with filesystem access and its Skill Creator for
-Skill authoring: OpenAI's in Codex or Anthropic's in Claude Code. Standalone
-prompts need no Skill Creator. No runtime scripts or network access are required.
-
-The instructions Skillwriter produces target Claude Opus 5.5, Claude Fable
-5.1+, GPT-6.1 Sol and GPT Astra 6+ by default. Skillwriter has been tested
-with `gpt-6.1-sol` and Claude Opus 5.5 at medium reasoning effort.
+```text
+Use Scoville Skillwriter to review this Skill for repetition and unclear activation. Report findings without editing.
+```
 
 ## Install
 
-This Skill works independently. Other Scoville Skills are optional.
+Needs an Agent Skills host with filesystem access and its Skill Creator:
+OpenAI's in Codex or Anthropic's in Claude Code. A standalone prompt needs no
+Skill Creator.
 
-### Install this Skill
+Use `gpt-6.2-sol` or Claude Opus 5.5 at medium reasoning effort or higher. Below
+that, steps get skipped more often.
 
 Ask your agent host:
 
@@ -62,37 +47,21 @@ Preserve personal settings and unrelated Skills. Report the installed location
 and whether the host discovers the Skill.
 ```
 
-The host needs permission to write to its Skills directory. The
-[Codex Skills guide](https://learn.chatgpt.com/docs/build-skills) and the
-[Claude Code Skills guide](https://code.claude.com/docs/en/skills)
-list the locations for each host.
+The host needs write access to its Skills directory. The
+[Codex](https://learn.chatgpt.com/docs/build-skills) and
+[Claude Code](https://code.claude.com/docs/en/skills) Skills guides say where
+that is. This Skill works on its own. The other Scoville Skills are in the
+[Scoville Suite](https://github.com/benjaminstelzer/scoville-suite).
 
-### Install the complete Scoville suite
+## Background
 
-The complete suite is in the
-[Scoville Suite monorepo](https://github.com/benjaminstelzer/scoville-suite).
-Install its released Skill packages, not development templates.
+Skillwriter grew from maintaining Skills and reusable prompts in real
+projects. Repeated rules and explanations made instructions longer without
+making them clearer.
 
-## How to use
-
-Ask to write, simplify or review a Skill or reusable prompt, or invoke `$scoville-skillwriter`. For a revision, it respects already approved changes and asks only for changes outside that approval.
-
-## Sources
-
-See the [full instructions](https://github.com/benjaminstelzer/scoville-skillwriter/blob/main/scoville-skillwriter/SKILL.md) and their sources-and-evaluation
-reference for the authoring guidance and the distinction between source review,
-format validation and observed model behavior. The Skill is also available as
-[Scoville Skillwriter](https://github.com/benjaminstelzer/scoville-skillwriter)
-outside the suite.
-
-## Family
-
-- [Code](https://github.com/benjaminstelzer/scoville-code) covers engineering scope, implementation, risk and validation.
-- [Plan](https://github.com/benjaminstelzer/scoville-plan) keeps Plans, Work Items, Decisions and their status in the repository.
-- [UI](https://github.com/benjaminstelzer/scoville-ui) covers UI implementation, information structure, accessibility and rendered checks, with an optional WordPress adapter.
-- [Handoff](https://github.com/benjaminstelzer/scoville-handoff) passes active work to another agent or session.
-- [Project Context Cleanup](https://github.com/benjaminstelzer/scoville-suite) keeps requested project rules and index text concise without losing required context.
-- [Skillwriter](https://github.com/benjaminstelzer/scoville-skillwriter) writes, simplifies and reviews Skills and reusable agent prompts.
+The [full instructions](https://github.com/benjaminstelzer/scoville-skillwriter/blob/main/scoville-skillwriter/SKILL.md) are what the agent reads.
+Its [sources](scoville-skillwriter/references/sources-and-evaluation.md) list
+what the writing rules build on.
 
 ## License
 
